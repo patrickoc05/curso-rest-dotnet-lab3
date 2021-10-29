@@ -5,27 +5,39 @@
 @inject HttpClient Http
 
 <div>
-    @helloWorld
+    <h1>
+        @helloWorld
+    </h1>
+
+    @data2
+
+    @data
+
+    @*@foreach (var products in data)
+        {
+            <table>
+                <tr>
+                    <td>@products.Id</td>
+                    <td>@products.TemperatureC</td>
+                    <td>@products.TemperatureF</td>
+                    <td>@products.Summary</td>
+                </tr>
+            </table>
+        }*@
 </div>
 
 @code {
     string helloWorld = "Hello, World! C#";
 
-    /*
-    private string data;
 
+    private string data;
+    private string data2;
     protected override async Task OnInitializedAsync()
     {
-        this.data = await Http.GetStringAsync("/api/v1/Hello");
+        Console.WriteLine(Http.BaseAddress);
+        this.data = await Http.GetStringAsync("/api/products");
+        this.data2 = await Http.GetStringAsync("/db/hello");
+
+        StateHasChanged();
     }
-    
-    @foreach (var forecast in data)
-    {
-        <tr>
-            <td>@forecast.Date.ToShortDateString()</td>
-            <td>@forecast.TemperatureC</td>
-            <td>@forecast.TemperatureF</td>
-            <td>@forecast.Summary</td>
-        </tr>
-    }*/
 }
